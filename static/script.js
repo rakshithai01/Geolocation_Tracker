@@ -1,19 +1,38 @@
-fetch('/get-location')
-    .then(response => response.json())
+// Step 1: Get public IP from browser
+fetch('https://api.ipify.org?format=json')
+    .then(res => res.json())
+    .then(ipData => {
+
+        const userIP = ipData.ip;
+
+        // Step 2: Send IP to Flask backend
+        return fetch(`/get-location?ip=${userIP}`);
+    })
+    .then(res => res.json())
     .then(data => {
 
-        document.getElementById("ip").innerText = data.ip;
-        document.getElementById("city").innerText = data.city;
-        document.getElementById("region").innerText = data.region;
-        document.getElementById("country").innerText = data.country_name;
-        document.getElementById("lat").innerText = data.latitude;
-        document.getElementById("lon").innerText = data.longitude;
+        console.log(data); // DEBUG
 
-        // Initialize Map
-        const map = L.map('map').setView([data.latitude, data.longitude], 10);
+        // Safety check
+        if (!data.latitude || !data.longitude) {
+    alert("Unable to fetch location data.");
+    return;
+}
+
+document.getElementById("ip").innerText = data.ip || "N/A";
+document.getElementById("city").innerText = data.city || "N/A";
+document.getElementById("region").innerText = data.region || "N/A";
+document.getElementById("country").innerText = data.country || "N/A";
+document.getElementById("lat").innerText = data.latitude;
+document.getElementById("lon").innerText = data.longitude;
+
+        const map = L.map('map').setView(
+            [data.latitude, data.longitude],
+            10
+        );
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap'
+            attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
         L.marker([data.latitude, data.longitude])
@@ -21,6 +40,7 @@ fetch('/get-location')
             .bindPopup("User Location (IP Based)")
             .openPopup();
     })
-    .catch(error => {
-        console.error("Error fetching location:", error);
+    .catch(err => {
+        console.error("Error fetching location:", err);
+        alert("Error fetching location");
     });

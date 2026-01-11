@@ -9,19 +9,23 @@ def index():
 
 @app.route('/get-location')
 def get_location():
-    # Get user's IP
-    ip = request.remote_addr
+    ip = request.args.get('ip')
 
-    # If running locally, this helps testing
-    if ip == '127.0.0.1':
-        ip = ''
+    if not ip:
+        return jsonify({"error": "IP not provided"}), 400
 
-    # Free IP Geolocation API
-    url = f"https://ipapi.co/{ip}/json/"
+    url = f"https://ipinfo.io/{ip}/json"
     response = requests.get(url)
     data = response.json()
 
+    # Convert "lat,long" string to numbers
+    if "loc" in data:
+        lat, lon = data["loc"].split(",")
+        data["latitude"] = float(lat)
+        data["longitude"] = float(lon)
+
     return jsonify(data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

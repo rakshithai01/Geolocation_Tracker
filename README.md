@@ -1,32 +1,29 @@
 # 🌍 Geolocation Tracker (IP-Based)
 
 ## 📌 Project Overview
-The **Geolocation Tracker** is a web application developed using **Python (Flask)**, **HTML**, **CSS**, and **JavaScript**.  
-It automatically detects a user's **IP address**, fetches the approximate geographical location using an **IP Geolocation API**, and displays the location on an interactive map using **Leaflet.js** and **OpenStreetMap**.
+The **Geolocation Tracker** is a full-stack web application developed using **Python (Flask)**, **HTML**, **CSS**, and **JavaScript**.  
+It automatically detects a user's **public IP address from the browser**, fetches the **approximate geographical location** using an IP Geolocation API, and displays the location on an interactive map using **Leaflet.js** and **OpenStreetMap**.
 
-This project is ideal for **internship submissions**, **academic mini-projects**, and beginners learning **Flask with API integration**.
+This project follows an industry-standard approach where the frontend fetches the public IP and the backend processes geolocation data.
 
 ---
 
 ## 🚀 Features
-- Automatic IP address detection  
-- IP-based geolocation without user permission popup  
-- Displays location details:
-  - IP Address
-  - City
-  - Region
-  - Country
-  - Latitude & Longitude
-- Interactive map visualization using Leaflet.js  
-- Clean and beginner-friendly project structure  
+- Automatic public IP detection
+- No manual input required
+- No GPS permission popup
+- IP-based geolocation (city, region, country, latitude, longitude)
+- Interactive map visualization
+- Flask-based backend API
+- Beginner-friendly and internship-ready
 
 ---
 
 ## 🛠 Technologies Used
 - **Backend:** Python, Flask  
 - **Frontend:** HTML, CSS, JavaScript  
+- **Geolocation API:** ipinfo.io  
 - **Map Library:** Leaflet.js  
-- **Geolocation API:** ipapi.co  
 - **Map Provider:** OpenStreetMap  
 
 ---
@@ -45,19 +42,28 @@ Geolocation_Tracker/
 
 ---
 
+## ⚙️ How It Works
+1. Browser fetches the user's public IP.
+2. IP is sent to Flask backend.
+3. Backend queries the geolocation API.
+4. Latitude & longitude are extracted.
+5. Location is shown on an interactive map.
+
+---
+
 ## ▶️ How to Run the Project
 
-### 1️⃣ Install Required Packages
+### 1️⃣ Install Dependencies
 ```bash
 pip install flask requests
 ```
 
-### 2️⃣ Run the Application
+### 2️⃣ Run the App
 ```bash
 python app.py
 ```
 
-### 3️⃣ Open in Browser
+### 3️⃣ Open Browser
 ```
 http://127.0.0.1:5000
 ```
@@ -65,17 +71,17 @@ http://127.0.0.1:5000
 ---
 
 ## ⚠️ Important Notes
-- The detected location is **approximate**, not exact  
-- VPNs, proxies, or mobile networks may affect accuracy  
-- This project uses IP-based geolocation, not GPS  
+- Location accuracy is approximate
+- VPNs/proxies may affect results
+- IP-based geolocation is not GPS-accurate
+- Intended for educational use only
 
 ---
 
 ## 🎯 Use Cases
-- Internship & academic project submission  
-- Learning Flask backend development  
-- Understanding API integration  
-- Beginner-level full-stack web application  
+- Internship / academic projects
+- Flask learning projects
+- API & map integration demos
 
 ---
 
@@ -86,11 +92,11 @@ http://127.0.0.1:5000
 ---
 
 ## ⭐ Acknowledgements
-- OpenStreetMap  
+- ipinfo.io  
 - Leaflet.js  
-- ipapi.co  
+- OpenStreetMap  
 
 ---
 
 ## 📜 License
-This project is open-source and free to use for learning and educational purposes.
+Open-source project for learning and educational purposes.
