@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geolocation Tracker</title>
+
+    <!-- Leaflet Map CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h2>🌍 Geolocation Tracker (IP Based)</h2>
+
+<div id="info">
+    <p><b>IP Address:</b> <span id="ip"></span></p>
+    <p><b>City:</b> <span id="city"></span></p>
+    <p><b>Region:</b> <span id="region"></span></p>
+    <p><b>Country:</b> <span id="country"></span></p>
+    <p><b>Latitude:</b> <span id="lat"></span></p>
+    <p><b>Longitude:</b> <span id="lon"></span></p>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
